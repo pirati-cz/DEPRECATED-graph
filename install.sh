@@ -19,15 +19,12 @@ cd $1/repositories
 git clone https://github.com/pirati-cz/graph-common.git graph-common
 cd ..
 
-# pull official image
-docker pull piraticz/graph
-
 # build image with ssh key if provided
 if [ -z "$2" ]; then
     cp -f ssh_key.pub.dist ./Dockerfile-with-key/ssh_key.pub
 else
     cp -f "$2" ./Dockerfile-with-key/ssh_key.pub
 fi
-docker build -t "piraticz/graph-key" ./Dockerfile-with-key/Dockerfile
+docker build -t "piraticz/graph-key" ./Dockerfile-with-key
 
 exit 0
