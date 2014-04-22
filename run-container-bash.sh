@@ -2,4 +2,4 @@
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-docker run -t -p 80 -v $DIR/repositories:/home/app piraticz/graph-key
+docker run -ti -p 80 -v $DIR/app:/home/app piraticz/graph bash
