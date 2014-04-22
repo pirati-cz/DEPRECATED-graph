@@ -11,6 +11,9 @@ RUN /build/nodejs.sh
 #RUN rm -f /etc/service/nginx/down
 #ADD webapp.conf /etc/nginx/sites-enabled/webapp.conf
 
+RUN npm install -g coffee-script mocha should
+ADD rc.local /etc/rc.local
+
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ADD ssh_key.pub /tmp/ssh_key.pub
