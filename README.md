@@ -6,12 +6,7 @@ graph api docker container with installer
 installation
 ============
 
-  download raw install.sh file:
-  ```wget https://raw.githubusercontent.com/pirati-cz/graph/master/install.sh```
-
-  and run it with arguments>
-  ```./install.sh <installation directory> [ <ssh public key> ]```
-  where ssh public key is the key you will use to ssh to running container machine
+  ```\curl -sSL https://raw.githubusercontent.com/pirati-cz/graph/master/install.sh | bash -s <full installation directory path> <full ssh public key path>```
 
 running
 =======
