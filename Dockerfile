@@ -15,6 +15,3 @@ RUN npm install -g coffee-script mocha should
 ADD rc.local /etc/rc.local
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-ADD ssh_key.pub /tmp/ssh_key.pub
-RUN cat /tmp/ssh_key.pub >> /root/.ssh/authorized_keys && rm -f /tmp/ssh_key.pub

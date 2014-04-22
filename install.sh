@@ -20,14 +20,14 @@ git clone https://github.com/pirati-cz/graph-common.git graph-common
 cd ..
 
 # pull official image
-#docker pull piraticz/graph (not yet on index.docker.io => must be build)
-cp -f ./ssh_key.pub.dist ./ssh_key.pub
-docker build -t "piraticz/graph" . # replace
+docker pull piraticz/graph
 
 # build image with ssh key if provided
-if [ ! -z "$2" ]; then
-    cp -f "$2" ./ssh_key.pub
-    docker build -t "piraticz/graph-key" .
+if [ -z "$2" ]; then
+    cp -f ssh_key.pub.dist ./Dockerfile-with-key/ssh_key.pub
+else
+    cp -f "$2" ./Dockerfile-with-key/ssh_key.pub
 fi
+docker build -t "piraticz/graph-key" ./Dockerfile-with-key/Dockerfile
 
 exit 0
