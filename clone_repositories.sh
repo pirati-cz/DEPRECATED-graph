@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )" #"
-DIR="$DIR/graph"
+DIR="$DIR/app"
 
 # check arguments
 if [ ! -z "$1" ]; then
@@ -12,13 +12,6 @@ fi
 mkdir -p $DIR
 cd $DIR
 
-# clone base
-git clone https://github.com/pirati-cz/graph.git .
-
-# clone repositories
-/bin/bash ./clone_repositories.sh
-
-# generate ssh key
-/bin/bash ./generate_ssh_key.sh
+git clone https://github.com/pirati-cz/graph-common.git graph-common
 
 exit 0
