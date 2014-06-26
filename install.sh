@@ -13,12 +13,24 @@ mkdir -p $DIR
 cd $DIR
 
 # clone base
-git clone https://github.com/pirati-cz/graph.git .
+git clone https://github.com/pirati-cz/graph.git $DIR
+
+# create other directories
+mkdir -p $DIR/app
+mkdir -p $DIR/data/db
+mkdir -p $DIR/ssh
 
 # clone repositories
-/bin/bash ./clone_repositories.sh
+cd $DIR/app
+git clone https://github.com/pirati-cz/graph-common.git graph-common
+git clone https://github.com/pirati-cz/graph-cli.git graph-cli
+git clone https://github.com/pirati-cz/graph-rest.git graph-rest
+cd $DIR
 
 # generate ssh key
-/bin/bash ./generate_ssh_key.sh
+./generate_ssh_key.sh
+
+# container environment for 'app' user 
+echo 'source /etc/container_environment.sh' > $DIR/app/.bashrc
 
 exit 0

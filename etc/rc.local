@@ -12,7 +12,7 @@
 # By default this script does nothing.
 
 cd /home/app
-for APP in *; do
+for APP in graph-*; do
     cd $APP && npm install --unsafe-perm && cd ..
 done
 chown -R app:app /home/app

@@ -1,20 +1,24 @@
 #!/bin/bash
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )" #"
-DIR="$DIR/app/.ssh"
-
-# check arguments
 if [ ! -z "$1" ]; then
     DIR="$1"
 fi
 
-# create target directory
-mkdir -p $DIR
+# directory paths
+APP_SSH_DIR="$DIR/app/.ssh"
+SSH_DIR="$DIR/ssh"
+
+# create target directories
+mkdir -p --mode 0700 $SSH_DIR
+mkdir -p --mode 0700 $APP_SSH_DIR
 
 # generate key
-ssh-keygen -t rsa -f $DIR/id_rsa
+ssh-keygen -t rsa -f $SSH_DIR/id_rsa
 
-# authorize the public key
-cp $DIR/id_rsa.pub $DIR/authorized_keys
+# move public key to app/.ssh/authorized_keys to allow ssh into the container
+mv $SSH_DIR/id_rsa.pub $APP_SSH_DIR/authorized_keys
 
 exit 0
+
+
